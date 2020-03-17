@@ -1,34 +1,48 @@
+const orderModel = require('../models/Order')
+
 exports.getOrders = (req, res, next) => {
   // Schreib hier code um alle Bestellungen aus der orders-Collection zu holen
 
-  res.status(200).send(orders);
+  const allOrders = orderModel.find()
+
+  allOrders
+  .then(data => res.status(200).send(data))
+
 };
 
 exports.getOrder = (req, res, next) => {
   const { id } = req.params;
-  // Schreib hier code um die Bestellung mit der id aus params aus der orders-Collection zu holen
-
-  res.status(200).send(order);
+  const order = orderModel.find({ _id :  id });
+  order
+  .then(data => res.send(data))
 };
 
 exports.deleteOrder = (req, res, next) => {
   const { id } = req.params;
-  // Schreib hier code um die Bestellung mit der id aus params aus der orders-Collection zu löschen
-
-  res.status(200).send(order);
+  const order = orderModel.remove({ _id : id })
+  order
+  .then(data => res.send(data))
 };
 
 exports.updateOrder = (req, res, next) => {
   const { id } = req.params;
   const dt = req.body;
-  // Schreib hier code um die Bestellung mit der id aus params in der orders-Collection mit den Daten aus req.body zu aktualisieren
-
-  res.status(200).send(order);
+  const order = orderModel.findByIdAndUpdate(id,dt,{new : true})
+  order
+  .then(data => res.send(data))
 };
 
 exports.addOrder = (req, res, next) => {
-  const order = req.body;
-  // Schreib hier code um die Daten der neuen Bestellungen aus req.body in der orders-Collection zu speichern
+  const { quantity, record} = req.body
 
-  res.status(200).send(order);
+  const postOrder = new orderModel({
+    quantity,
+     record
+  })
+
+  postOrder
+  .save()
+  .then(data => res.status(200).send(data))
+
+
 };

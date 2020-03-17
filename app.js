@@ -11,6 +11,7 @@ const usersRouter = require("./routes/users");
 const recordsRouter = require("./routes/records");
 const ordersRouter = require("./routes/orders");
 const { setCors } = require("./middleware/security");
+const animalroute = require("./routes/animals")
 
 /** INIT */
 const app = express();
@@ -19,16 +20,12 @@ const app = express();
 app.use(logger("dev"));
 
 /**CONNECT TO DB */
-mongoose.connect("mongodb://localhost:27017/record-shop", {
+mongoose.connect("mongodb+srv://hasan:hasan@cluster0-9krc6.mongodb.net/test?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
-});
+},()=>{console.log("Database connection established...")});
 
-mongoose.connection.on("error", console.error);
-mongoose.connection.on("open", function() {
-  console.log("Database connection established...");
-});
 
 
 
@@ -46,6 +43,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/records", recordsRouter);
 app.use("/orders", ordersRouter);
+app.use("/animals",animalroute)
 
 /** ERROR HANDLING */
 /*app.use(function(req, res, next) {
