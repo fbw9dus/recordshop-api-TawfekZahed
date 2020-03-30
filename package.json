@@ -18,7 +18,8 @@
     "http-errors": "^1.7.3",
     "lowdb": "^1.0.0",
     "mongoose": "^5.7.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.2",
