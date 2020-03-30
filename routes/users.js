@@ -17,7 +17,7 @@ const {
 router
   .route("/")
   .get(getUsers)
-  .post(validateInputs(userValdationRules),addUser);
+  .post(validateInputs(userValidationRules),addUser);
 
 router
   .route("/:id")
