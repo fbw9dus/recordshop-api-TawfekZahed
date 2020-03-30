@@ -4,7 +4,7 @@ const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const adapter = new FileSync("data/db.json");
 const db = low(adapter);
-const {userValdationRules}=require('../lib/validator/userRouls')
+const {userValidationRules}=require('../lib/validator/userRouls')
 const {validateInputs} = require('../middleware/validator')
 const {
   getUsers,
