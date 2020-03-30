@@ -81,7 +81,7 @@ describe('Users Endpoints', () => {
         const res = await request(app)
             .post(`/users`)
             .send(fakeUser)
-        const checkUser = await User.findById(res.body._id)
+        const checkUser = await User.findOne({'email': fakeUser.email})
         expect(checkUser).toHaveProperty(['email'])
         done()
     })
