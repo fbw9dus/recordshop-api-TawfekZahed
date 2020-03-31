@@ -1,7 +1,7 @@
 var Orders = require('../models/Order')
 
 exports.getOrders = async (req, res, next) => {
-  var orders = await Orders.find()
+  var orders = await Orders.find().populate('record')
   res.status(200).send(orders);
 };
 
